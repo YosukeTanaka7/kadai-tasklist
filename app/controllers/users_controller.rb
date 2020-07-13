@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:index]
   def index
   end
 
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = 'ユーザを承認しました。'
-      redirect_to @user
+      redirect_to root_path
     else
       flash.now[:danger] = 'ユーザの承認に失敗しました。'
       render :new
@@ -20,6 +21,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
