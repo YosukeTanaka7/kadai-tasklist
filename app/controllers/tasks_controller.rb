@@ -2,10 +2,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-      @tasks = Task.order(id: :desc).page(params[:page]).per(10)
+    if logged_in?
+      @task = current_user.tasks.build  # form_with 用
+      @tasks = current_user.tasks.order(id: :desc).page(params[:page]).per(10)
+    end
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def new
