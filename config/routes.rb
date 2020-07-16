@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tasks/create'
+  get 'tasks/destroy'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
