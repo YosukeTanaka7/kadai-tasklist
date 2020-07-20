@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
   resources :users, only: [:new, :create]
-#  showを除いて　:index, :new, :create　だけ
   resources :tasks
 
 end
